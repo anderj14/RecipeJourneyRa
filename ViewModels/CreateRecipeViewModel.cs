@@ -1,10 +1,11 @@
 using RecipeJourneyRa.Data.Enum;
 
-namespace RecipeJourneyRa.Models
+namespace RecipeJourneyRa.ViewModels
 {
-    public class Recipe : BaseEntity
+    public class CreateRecipeViewModel
     {
-        public DateTime CreatedDate { get; set; }
+        public int Id { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string Title { get; set; }
         public string Description { get; set; }
         public int PreparationTime { get; set; }
@@ -13,8 +14,5 @@ namespace RecipeJourneyRa.Models
         public string PictureUrl { get; set; }
 
         public RecipeCategory RecipeCategory { get; set; }
-
-        public ICollection<Ingredient> Ingredients { get; set; }
-        public ICollection<Instruction> Instructions { get; set; }
     }
 }

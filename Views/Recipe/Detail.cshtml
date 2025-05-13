@@ -1,0 +1,57 @@
+@model Recipe
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="w-100 overflow-hidden bg-gray-100" id="top">
+    <div class="container position-relative" style="min-height: 70vh;">
+        <div class="col-12 col-lg-8 w-50 position-absolute top-0 end-0 bg-cover"
+             data-aos="fade-left"
+             style="background-image: url('@Model.PictureUrl'); background-size: cover; background-position: center; height: 100vh;">
+        </div>
+        <div class="row pt-5">
+            <div class="col-lg-7 position-relative" data-aos="fade-right">
+                <h1 class="display-1 fw-bold mt-5">
+                    @Model.Title
+                </h1>
+                <p class="lead">
+                    @Model.Description
+                </p>
+                <p class="text-muted">
+                    Category: <strong>@Model.RecipeCategory</strong><br />
+                    Difficulty: <strong>@Model.DifficultyLevel</strong><br />
+                    Prep Time: <strong>@Model.PreparationTime</strong> min |
+                    Cooking Time: <strong>@Model.CookingTime</strong> min<br />
+                    Created on: <strong>@Model.CreatedDate.ToString("dd/MM/yyyy")</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ingredients Section -->
+<div class="container my-5">
+    <h2 class="mb-3">Ingredients</h2>
+    <ul class="list-group list-group-flush">
+        @foreach (var ingredient in Model.Ingredients)
+        {
+            <li class="list-group-item">
+                <strong>@ingredient.Quantity</strong> - @ingredient.IngredientName
+            </li>
+        }
+    </ul>
+</div>
+
+<!-- Instructions Section -->
+<div class="container my-5">
+    <h2 class="mb-3">Instructions</h2>
+    <ol class="list-group list-group-numbered">
+        @foreach (var step in Model.Instructions)
+        {
+            <li class="list-group-item">
+                @step.Description
+            </li>
+        }
+    </ol>
+</div>

@@ -1,0 +1,46 @@
+@model IReadOnlyList<Recipe>
+
+@{
+    var index = 1;
+}
+@{
+    Layout = "_Layout";
+}
+
+<div class="w-100 overflow-hidden bg-gray-100" id="top">
+    <div class="container position-relative mt-5">
+        <div class="col-12 col-lg-8 mt-0 h-100 position-absolute top-0 end-0 bg-cover" data-aos="fade-left"
+            style="background-image: url(img/webp/interior11.webp)"></div>
+        <div class="row mt-5">
+            <div class="col-lg-7 position-relative" data-aos="fade-right">
+                <h1 class="display-1 fw-bold mt-5">
+                    Discover Delicious Recipes!
+                </h1>
+                <p class="lead">
+                    Explore a world of flavors with our curated collection 
+                    of recipes. Whether you're a seasoned chef or just starting 
+                    out, we have something for everyone.
+                </p>
+            </div>
+        </div>
+        <div class="row d-flex align-items-stretch py-5">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                    <span class="h5 fw-lighter">@index.ToString("D2").</span>
+                    <h3 class="py-3 border-top border-dark">
+                        @item.Title
+                    </h3>
+                    <p>
+                        @item.Description
+                    </p>
+                    <p class="text-muted">@item.RecipeCategory</p>
+                    <a asp-controller="Recipe" asp-action="Detail" asp-route-id="@item.Id" class="link-fancy">Learn more </a>
+                </div>
+                index++;
+            }
+        </div>
+
+    </div>
+
+</div>

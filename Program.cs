@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using RecipeJourneyRa.Data;
+using RecipeJourneyRa.Interfaces;
+using RecipeJourneyRa.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 var app = builder.Build();
 
