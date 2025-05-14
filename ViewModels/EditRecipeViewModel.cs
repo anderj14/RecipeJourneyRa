@@ -16,7 +16,7 @@ namespace RecipeJourneyRa.ViewModels
         public RecipeCategory RecipeCategory { get; set; }
 
         // Lista de ingredientes
-        public ICollection<IngredientViewModel> Ingredients { get; set; }
-        public ICollection<InstructionViewModel> Instructions { get; set; }
+        public ICollection<IngredientViewModel> Ingredients { get; set; } = new List<IngredientViewModel>();
+        public ICollection<InstructionViewModel> Instructions { get; set; } = new List<InstructionViewModel>();
     }
 }

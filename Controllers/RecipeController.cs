@@ -108,7 +108,7 @@ namespace RecipeJourneyRa.Controllers
                 ModelState.AddModelError("", "Failed to edit club");
                 return View("Edit", recipeVM);
             }
-            Recipe recipe = await _recipeRepo.GetByIdWithIncludesAsync(id, r => r.Ingredients);
+            Recipe recipe = await _recipeRepo.GetByIdWithIncludesAsync(id, r => r.Ingredients, r => r.Instructions);
             if (recipe == null)
             {
                 return View("Error");
@@ -123,7 +123,7 @@ namespace RecipeJourneyRa.Controllers
             recipe.CreatedDate = recipeVM.CreatedDate;
 
             await _recipeRepo.Update(recipe);
-            return RedirectToAction("Edit");
+            return RedirectToAction("Edit", new { id = recipe.Id });
         }
 
         [HttpPost]
